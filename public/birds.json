@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "name": "Sýkora koňadra",
+    "latinName": "Parus major",
+    "order": "Pěvci",
+    "family": "Sýkorovití",
+    "location": { "lat": 50.0755, "lng": 14.4378 },
+    "date": "2024-03-15T10:30:00",
+    "notes": "Viděna u krmítka",
+    "seen": true,
+    "count": 3
+  },
+  {
+    "id": "2",
+    "name": "Pěnkava obecná",
+    "latinName": "Fringilla coelebs",
+    "order": "Pěvci",
+    "family": "Pěnkavovití",
+    "location": { "lat": 49.1951, "lng": 16.6068 },
+    "date": "2024-04-02T08:15:00",
+    "notes": "Zpívala na větvi",
+    "seen": true,
+    "count": 1
+  },
+  {
+    "id": "3",
+    "name": "Čáp bílý",
+    "latinName": "Ciconia ciconia",
+    "order": "Brodiví",
+    "family": "Čapovití",
+    "location": { "lat": 50.2092, "lng": 15.8328 },
+    "date": "2024-05-10T14:00:00",
+    "notes": "Na louce u řeky",
+    "seen": false,
+    "count": 2
+  },
+  {
+    "id": "4",
+    "name": "Kos černý",
+    "latinName": "Turdus merula",
+    "order": "Pěvci",
+    "family": "Drozdovití",
+    "location": { "lat": 50.0755, "lng": 14.4378 },
+    "date": "2024-03-20T07:45:00",
+    "notes": "Zpíval ráno v parku",
+    "seen": true,
+    "count": 1
+  },
+  {
+    "id": "5",
+    "name": "Ledňáček říční",
+    "latinName": "Alcedo atthis",
+    "order": "Srostloprstí",
+    "family": "Ledňáčkovití",
+    "location": { "lat": 49.7444, "lng": 13.3775 },
+    "date": "2024-06-01T16:20:00",
+    "notes": "U potoka, velmi rychlý",
+    "seen": true,
+    "count": 1
+  }
+]
