@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { type Bird } from "../types/Bird";
 
 interface BirdCardProps extends Bird {
@@ -5,7 +6,10 @@ interface BirdCardProps extends Bird {
   onRemove: (id: string) => void;
 }
 
-export function BirdCard({ id, name, family, location, date, notes, seen, count, latinName, order, onToggleSeen, onRemove}: BirdCardProps) {
+export function BirdCard({ id, name, family, location, date, notes, seen, count, latinName, order, onToggleSeen, onRemove}: BirdCardProps)
+ {
+
+  const navigate = useNavigate();
   return (
     <div>
       <h2>{name}</h2>
@@ -19,6 +23,7 @@ export function BirdCard({ id, name, family, location, date, notes, seen, count,
       <p>{seen ? "✓ Viděno" : "Neviděno"}</p>
       <button onClick={() => onRemove(id)}>Smazat</button>
       <button onClick={() => onToggleSeen(id)}>Přepnout stav</button>
+      <button onClick={()=> navigate(`/birds/${id}`)}>Detail</button>
     </div>
   );
 }
