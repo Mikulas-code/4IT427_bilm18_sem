@@ -1,9 +1,14 @@
 import { BirdCard } from "../components/BirdCard";
 import { useBirdList } from "../context/BirdListContext";
+import { useState } from "react";
+import { NewBirdForm } from "../components/NewBirdForm";
+import type { Bird } from "../types/Bird";
 
 export function BirdListPage() {
   const { birds, isLoading, isError, addBird, removeBird, toggleSeen } =
     useBirdList();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (isLoading) return <p>Načítám...</p>;
   if (isError) return <p>Chyba při načítání.</p>;
@@ -11,6 +16,8 @@ export function BirdListPage() {
   return (
     <main>
       <h1>Seznam ptáků</h1>
+      <button onClick={() => setIsModalOpen(true)}>Přidat ptáka</button>
+      {isModalOpen && <NewBirdForm onClose={() => setIsModalOpen(false)} onAddBird={addBird} />}
       {birds.map((bird) => (
         <BirdCard
           key={bird.id}
