@@ -3,7 +3,6 @@ import { useBirdList } from "../context/BirdListContext";
 import { useState } from "react";
 import { NewBirdForm } from "../components/NewBirdForm";
 
-
 export function BirdListPage() {
   const { birds, isLoading, isError, addBird, removeBird, toggleSeen } =
     useBirdList();
@@ -14,26 +13,29 @@ export function BirdListPage() {
   if (isError) return <p>Chyba při načítání.</p>;
 
   return (
-    <main>
-      <h1>Seznam ptáků</h1>
-      <button onClick={() => setIsModalOpen(true)}>Přidat ptáka</button>
-      {isModalOpen && <NewBirdForm onClose={() => setIsModalOpen(false)} onAddBird={addBird} />}
+    <main className="max-w-4xl mx-auto p-8">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold text-green-500">Seznam ptáků</h1>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg"
+        >
+          + Přidat ptáka
+        </button>
+      </div>
+      {isModalOpen && (
+        <NewBirdForm
+          onClose={() => setIsModalOpen(false)}
+          onAddBird={addBird}
+        />
+      )}
       {birds.map((bird) => (
         <BirdCard
           key={bird.id}
-          id={bird.id}
-          name={bird.name}
-          count={bird.count}
-          date={bird.date}
-          family={bird.family}
-          latinName={bird.latinName}
-          location={bird.location}
-          notes={bird.notes}
-          order={bird.order}
-          seen={bird.seen}
+          {...bird}
           onRemove={removeBird}
           onToggleSeen={toggleSeen}
-        ></BirdCard>
+        />
       ))}
     </main>
   );

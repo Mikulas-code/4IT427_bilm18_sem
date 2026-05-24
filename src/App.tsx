@@ -4,24 +4,13 @@ import { BirdDetailPage } from "./pages/BirdDetailPage";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-
   return (
-    <main>
-      <nav>
-        <NavLink to="/">
-        Seznam ptáků
-        </NavLink>
-      </nav>
-
-
+    <div className="min-h-screen bg-gray-900 text-gray-100">
       <Routes>
         <Route path="/" element={<BirdListPage />} />
         <Route path="/birds/:id" element={<BirdDetailPage />} />
       </Routes>
-
-
-    </main>
-        
+    </div>
   );
 }
 
