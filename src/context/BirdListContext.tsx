@@ -11,6 +11,7 @@ interface BirdListContextType {
   addBird: (bird: Bird) => void;
   removeBird: (id: string) => void;
   toggleSeen: (id: string) => void;
+  updateBird: (bird: Bird) => void,
 }
 
 export const BirdListContext = createContext<BirdListContextType>({
@@ -20,6 +21,7 @@ export const BirdListContext = createContext<BirdListContextType>({
   addBird: () => {},
   removeBird: () => {},
   toggleSeen: () => {},
+  updateBird: () => {},
 });
 
 export function BirdListProvider({ children }: { children: ReactNode }) {
@@ -52,6 +54,12 @@ export function BirdListProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const updateBird = (updatedBird: Bird) => {
+  setClientBirds(clientBirds.map((bird) =>
+    bird.id === updatedBird.id ? updatedBird : bird
+  ));
+};
+
 
 
   useEffect(()=>{
@@ -59,7 +67,7 @@ export function BirdListProvider({ children }: { children: ReactNode }) {
   }, [serverBirds]);
 
   return (
-    <BirdListContext.Provider value={ {birds: clientBirds, isLoading, isError, addBird, removeBird, toggleSeen}}
+    <BirdListContext.Provider value={ {birds: clientBirds, isLoading, isError, addBird, removeBird, toggleSeen, updateBird}}
     >
         {children}
     </BirdListContext.Provider>

@@ -1,48 +1,49 @@
 import { useState } from "react";
-import { type Bird } from "../types/Bird";
+import type { Bird } from "../types/Bird";
+import { useParams } from "react-router";
+import { useBirdList } from "../context/BirdListContext";
 
-interface NewBirdFormProps {
-  onAddBird: (bird: Bird) => void;
+interface BirdDetailEditFormProps {
+  bird: Bird;
   onClose: () => void;
+  onSave: (bird: Bird) => void;
 }
 
-export function NewBirdForm({ onAddBird, onClose }: NewBirdFormProps) {
-  const [name, setName] = useState("");
-  const [latinName, setLatinName] = useState("");
+export function BirdDetailEditForm({
+  bird,
+  onClose,
+  onSave,
+}: BirdDetailEditFormProps) {
+  const [name, setName] = useState(bird.name);
+  const [latinName, setLatinName] = useState(bird.latinName);
 
-  const [order, setOrder] = useState("");
-  const [family, setFamily] = useState("");
+  const [order, setOrder] = useState(bird.order);
+  const [family, setFamily] = useState(bird.family);
 
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
+  const [lat, setLat] = useState(bird.location.lat.toString());
+  const [lng, setLng] = useState(bird.location.lng.toString());
 
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(bird.date);
 
-  const [notes, setNotes] = useState("");
-  const [seen, setSeen] = useState("");
+  const [notes, setNotes] = useState(bird.notes);
+  const [seen, setSeen] = useState(bird.seen);
 
-  const [count, setCount] = useState("");
-
-  const [isEditing, setIsEditing] = useState(false);
+  const [count, setCount] = useState(bird.count.toString());
 
   function handleSubmit() {
-    const newId = Date.now().toString();
-
-    const location = { lat: Number(lat), lng: Number(lng) };
-    onAddBird({
-      id: newId,
+    onSave({
+      ...bird,
       name,
       latinName,
       order,
       family,
       count: Number(count),
       date,
-      location,
+      location: { lat: Number(lat), lng: Number(lng) },
       notes,
-      seen: false,
     });
+    onClose();
   }
-
   return (
     <form
       onSubmit={(e) => {
@@ -98,7 +99,7 @@ export function NewBirdForm({ onAddBird, onClose }: NewBirdFormProps) {
         onChange={(e) => setNotes(e.target.value)}
       />
 
-      <button type="submit">Přidat</button>
+      <button type="submit">Uložit</button>
       <button type="button" onClick={onClose}>
         Zrušit
       </button>

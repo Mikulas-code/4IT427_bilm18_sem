@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { BirdCard } from "../components/BirdCard";
 import { useBirdList } from "../context/BirdListContext";
 import { useParams } from "react-router-dom";
+import { BirdDetailEditForm } from "../components/BirdDetailEditForm";
 
 export function BirdDetailPage() {
-  const { birds, isLoading, isError, addBird, removeBird, toggleSeen } =
+  const [isEditing, setIsEditing] = useState(false);
+  const { birds, isLoading, isError, addBird, removeBird, toggleSeen, updateBird } =
     useBirdList();
     const { id } = useParams();
 
@@ -13,8 +16,15 @@ export function BirdDetailPage() {
   const bird = birds.find((bird) => bird.id === id);
   if (!bird) return <p>Pták nenalezen.</p>;
 
-
-  return(
+  if (isEditing){
+    return(
+      <>
+      <h1>{bird.name} - Detail</h1>
+      <BirdDetailEditForm bird={bird} onSave={updateBird} onClose={()=> setIsEditing(false)}></BirdDetailEditForm>
+      </>
+    );
+  }
+  else return(
     <>
     <h1>{bird.name} - Detail</h1>
     <BirdCard
@@ -32,8 +42,7 @@ export function BirdDetailPage() {
           onRemove={removeBird}
           onToggleSeen={toggleSeen}
         ></BirdCard>
-
-    
+        <button onClick={()=> setIsEditing(true)}>Upravit</button>
     </>
   )
 }

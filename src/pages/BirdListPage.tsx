@@ -2,7 +2,7 @@ import { BirdCard } from "../components/BirdCard";
 import { useBirdList } from "../context/BirdListContext";
 import { useState } from "react";
 import { NewBirdForm } from "../components/NewBirdForm";
-import type { Bird } from "../types/Bird";
+
 
 export function BirdListPage() {
   const { birds, isLoading, isError, addBird, removeBird, toggleSeen } =

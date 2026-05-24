@@ -1,6 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { BirdCard } from "./components/BirdCard";
-import { useBirdList } from "./context/BirdListContext";
 import { BirdListPage } from "./pages/BirdListPage";
 import { BirdDetailPage } from "./pages/BirdDetailPage";
 import { Routes, Route } from "react-router-dom";
