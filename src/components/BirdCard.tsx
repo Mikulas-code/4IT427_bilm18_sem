@@ -6,11 +6,12 @@ interface BirdCardProps extends Bird {
   onRemove: (id: string) => void;
 }
 
-export function BirdCard({ id, name, family, location, date, notes, seen, count, latinName, order, onToggleSeen, onRemove}: BirdCardProps) {
+export function BirdCard({ id, name, family, location, date, notes, seen, count, latinName, order, onToggleSeen, onRemove, imageURL}: BirdCardProps) {
   const navigate = useNavigate();
   
   return (
     <div className="bg-gray-800 border border-gray-700 rounded-lg p-4 mb-4 hover:border-green-600 transition-colors">
+      {imageURL && <img src={imageURL} alt={name} className="w-full h-48 object-cover rounded-lg mb-3" />}
       <div className="flex justify-between items-start mb-2">
         <div>
           <h2 className="text-xl font-bold text-green-400">{name}</h2>
@@ -22,6 +23,7 @@ export function BirdCard({ id, name, family, location, date, notes, seen, count,
       </div>
 
       <div className="grid grid-cols-2 gap-1 text-sm text-gray-300 mb-4">
+        
         <p>Řád: {order}</p>
         <p>Čeleď: {family}</p>
         <p>Počet: {count}</p>

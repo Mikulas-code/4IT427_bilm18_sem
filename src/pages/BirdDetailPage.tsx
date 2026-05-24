@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { BirdCard } from "../components/BirdCard";
 import { useBirdList } from "../context/BirdListContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { BirdDetailEditForm } from "../components/BirdDetailEditForm";
@@ -10,9 +9,6 @@ export function BirdDetailPage() {
     birds,
     isLoading,
     isError,
-    addBird,
-    removeBird,
-    toggleSeen,
     updateBird,
   } = useBirdList();
   const { id } = useParams();

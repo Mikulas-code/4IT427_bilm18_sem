@@ -9,6 +9,7 @@ export interface Bird {
   notes: string;
   seen: boolean;
   count: number;
+  imageURL?: string;
 }
 
 export interface Coordinates {
