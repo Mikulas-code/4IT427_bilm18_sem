@@ -40,7 +40,7 @@ export function BirdDetailPage() {
     );
   } else
     return (
-      <main className="max-w-4xl mx-auto p-8">
+      <main className="max-w-6xl mx-auto p-8">
         <button
           onClick={() => navigate("/")}
           className="text-gray-400 hover:text-green-400 mb-6 flex items-center gap-1"
