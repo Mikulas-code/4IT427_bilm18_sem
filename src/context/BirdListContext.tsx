@@ -61,10 +61,24 @@ export function BirdListProvider({ children }: { children: ReactNode }) {
 };
 
 
-
+/*
   useEffect(()=>{
     if(serverBirds) setClientBirds(serverBirds)
   }, [serverBirds]);
+*/
+
+  useEffect(() => {
+  if (serverBirds) {
+    const saved = localStorage.getItem('birds');
+    setClientBirds(saved ? JSON.parse(saved) : serverBirds);
+  }
+}, [serverBirds]);
+
+useEffect(() => {
+  if (clientBirds.length > 0) {
+    localStorage.setItem('birds', JSON.stringify(clientBirds));
+  }
+}, [clientBirds]);
 
   return (
     <BirdListContext.Provider value={ {birds: clientBirds, isLoading, isError, addBird, removeBird, toggleSeen, updateBird}}
