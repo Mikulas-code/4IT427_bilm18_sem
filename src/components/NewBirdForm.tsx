@@ -99,7 +99,7 @@ export function NewBirdForm({ onAddBird, onClose }: NewBirdFormProps) {
             onChange={(e) => setCount(e.target.value)}
           />
           <input
-            type="datetime-local"
+            type="date"
             className="bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-100"
             value={date}
             onChange={(e) => setDate(e.target.value)}
