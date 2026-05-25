@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { BirdListPage } from "./pages/BirdListPage";
 import { BirdDetailPage } from "./pages/BirdDetailPage";
 import { Routes, Route } from "react-router-dom";
@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<BirdListPage />} />
         <Route path="/birds/:id" element={<BirdDetailPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );

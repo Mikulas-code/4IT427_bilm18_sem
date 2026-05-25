@@ -1,9 +1,23 @@
 import { useState } from "react";
 import { type Bird } from "../types/Bird";
+import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
 
 interface NewBirdFormProps {
   onAddBird: (bird: Bird) => void;
   onClose: () => void;
+}
+
+export function LocationPicker({
+  onLocationSelect,
+}: {
+  onLocationSelect: (lat: number, lng: number) => void;
+}) {
+  useMapEvents({
+    click(e) {
+      onLocationSelect(e.latlng.lat, e.latlng.lng);
+    },
+  });
+  return null;
 }
 
 export function NewBirdForm({ onAddBird, onClose }: NewBirdFormProps) {
@@ -13,8 +27,8 @@ export function NewBirdForm({ onAddBird, onClose }: NewBirdFormProps) {
   const [order, setOrder] = useState("");
   const [family, setFamily] = useState("");
 
-  const [lat, setLat] = useState("");
-  const [lng, setLng] = useState("");
+  const [lat, setLat] = useState(50.0755);
+  const [lng, setLng] = useState(14.4378);
 
   const [date, setDate] = useState("");
 
@@ -49,7 +63,7 @@ export function NewBirdForm({ onAddBird, onClose }: NewBirdFormProps) {
           e.preventDefault();
           handleSubmit();
         }}
-        className="bg-gray-800 border border-gray-700 rounded-lg p-6 w-full max-w-lg"
+        className="bg-gray-800 border border-gray-700 rounded-lg p-6 w-full max-w-2xl"
       >
         <h2 className="text-xl font-bold text-green-400 mb-4">Přidat ptáka</h2>
 
@@ -93,14 +107,14 @@ export function NewBirdForm({ onAddBird, onClose }: NewBirdFormProps) {
           <input
             className="bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-100 placeholder-gray-400"
             placeholder="Zeměpisná šířka"
-            value={lat}
-            onChange={(e) => setLat(e.target.value)}
+            value={lat.toString()}
+            onChange={(e) => setLat(Number(e.target.value))}
           />
           <input
             className="bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-100 placeholder-gray-400"
             placeholder="Zeměpisná délka"
-            value={lng}
-            onChange={(e) => setLng(e.target.value)}
+            value={lng.toString()}
+            onChange={(e) => setLng(Number(e.target.value))}
           />
           <textarea
             className="bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-100 placeholder-gray-400 col-span-2"
@@ -108,6 +122,21 @@ export function NewBirdForm({ onAddBird, onClose }: NewBirdFormProps) {
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
           />
+
+          <MapContainer
+            center={[Number(lat), Number(lng)]}
+            zoom={8}
+            className="w-full h-48 rounded-lg mb-3 col-span-2"
+          >
+            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            <LocationPicker
+              onLocationSelect={(lat, lng) => {
+                setLat(lat);
+                setLng(lng);
+              }}
+            />
+            {lat && <Marker position={[lat, lng]} />}
+          </MapContainer>
         </div>
 
         <div className="flex gap-2 justify-end">
