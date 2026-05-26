@@ -1,5 +1,3 @@
-import type { Bird } from "../types/Bird";
-
 interface BirdFilterCardProps {
   onChangeOrder: (value: string) => void;
   onChangeFamily: (value: string) => void;

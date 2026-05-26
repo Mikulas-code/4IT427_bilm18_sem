@@ -18,8 +18,9 @@ export function useBirdFilter(birds: Bird[]) {
     const matchesDate =
       (!filterDateFrom || bird.date >= filterDateFrom) &&
       (!filterDateTo || bird.date <= filterDateTo);
+    const matchesSeen = filterSeen ? bird.seen.toString() === filterSeen : true;
 
-    return matchesSearch && matchesFamily && matchesOrder && matchesDate;
+    return matchesSearch && matchesFamily && matchesOrder && matchesDate && matchesSeen;
   });
 
   const uniqueFamilies = [ ...new Set(birds.map((bird)=> bird.family))]
