@@ -1,7 +1,5 @@
 import { useState } from "react";
 import type { Bird } from "../types/Bird";
-import { useParams } from "react-router";
-import { useBirdList } from "../context/BirdListContext";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 import { LocationPicker } from "./NewBirdForm";
 
@@ -28,7 +26,6 @@ export function BirdDetailEditForm({
   const [date, setDate] = useState(bird.date);
 
   const [notes, setNotes] = useState(bird.notes);
-  const [seen, setSeen] = useState(bird.seen);
 
   const [count, setCount] = useState(bird.count.toString());
   const [imageURL, setImageURL] = useState(bird.imageURL || "");

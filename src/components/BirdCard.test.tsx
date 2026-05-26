@@ -20,7 +20,7 @@ const bird = {
 };
 
 describe("BirdCard", () => {
-  it("Zobrazí jméno, latinský název, řád, čeleď, datum, poznámky", () => {
+  it("Zobrazí jméno, latinský název, řád, čeleď, datum, poznámky, počet a lokaci", () => {
     render(
       <MemoryRouter>
         <BirdCard
@@ -36,6 +36,8 @@ describe("BirdCard", () => {
     expect(screen.getByText("Datum: 2024-03-15")).toBeInTheDocument();
     expect(screen.getByText("Poznámky: Viděna u krmítka")).toBeInTheDocument();
     expect(screen.getByText("Čeleď: Sýkorovití")).toBeInTheDocument();
+    expect(screen.getByText("Místo: 50.0755, 14.4378")).toBeInTheDocument();
+    expect(screen.getByText("Počet: 3")).toBeInTheDocument();
   });
 
   it("Zobrazí badge ✓ Viděno, pokud seen === true", () => {

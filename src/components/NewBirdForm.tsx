@@ -100,6 +100,7 @@ export function NewBirdForm({ onAddBird, onClose }: NewBirdFormProps) {
           />
           <input
             type="date"
+            aria-label="Datum"
             className="bg-gray-700 border border-gray-600 rounded px-3 py-2 text-gray-100"
             value={date}
             onChange={(e) => setDate(e.target.value)}
