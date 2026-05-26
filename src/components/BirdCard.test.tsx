@@ -122,6 +122,6 @@ describe("BirdCard", () => {
         />
       </MemoryRouter>,
     );
-    expect(screen.getByText("🦅")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "placeholder" })).toBeInTheDocument();
   });
 });

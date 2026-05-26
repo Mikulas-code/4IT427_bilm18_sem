@@ -34,60 +34,59 @@ export function BirdDetailCard({
           </button>
         </div>
         <div className="flex gap-4">
-        <div className="flex-1 flex flex-col">
-          <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 grid grid-cols-2 gap-4 text-gray-300 flex-1">
-            <div>
-              <p className="text-gray-500 text-sm">Řád</p>
-              <p>{bird.order}</p>
+          <div className="flex-1 flex flex-col">
+            <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 grid grid-cols-2 gap-4 text-gray-300 flex-1">
+              <div>
+                <p className="text-gray-500 text-sm">Řád</p>
+                <p>{bird.order}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 text-sm">Čeleď</p>
+                <p>{bird.family}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 text-sm">Počet</p>
+                <p>{bird.count}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 text-sm">Datum</p>
+                <p>{bird.date}</p>
+              </div>
+              <div>
+                <p className="text-gray-500 text-sm">Souřadnice</p>
+                <p>
+                  {bird.location.lat}, {bird.location.lng}
+                </p>
+              </div>
+              <div>
+                <p className="text-gray-500 text-sm">Stav</p>
+                <p className={bird.seen ? "text-green-400" : "text-gray-400"}>
+                  {bird.seen ? "✓ Viděno" : "Neviděno"}
+                </p>
+              </div>
+              <div className="col-span-2">
+                <p className="text-gray-500 text-sm">Poznámky</p>
+                <p>{bird.notes}</p>
+              </div>
             </div>
-            <div>
-              <p className="text-gray-500 text-sm">Čeleď</p>
-              <p>{bird.family}</p>
+            {/* tlačítka pod kartou */}
+            <div className="flex justify-end gap-2 mt-2">
+              <button
+                onClick={() => onToggleSeen(bird.id)}
+                className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm"
+              >
+                Přepnout stav
+              </button>
+              <button
+                onClick={() => {
+                  onRemove(bird.id);
+                  navigate("/");
+                }}
+                className="bg-red-900 hover:bg-red-800 text-white px-3 py-1 rounded text-sm"
+              >
+                Smazat
+              </button>
             </div>
-            <div>
-              <p className="text-gray-500 text-sm">Počet</p>
-              <p>{bird.count}</p>
-            </div>
-            <div>
-              <p className="text-gray-500 text-sm">Datum</p>
-              <p>{bird.date}</p>
-            </div>
-            <div>
-              <p className="text-gray-500 text-sm">Souřadnice</p>
-              <p>
-                {bird.location.lat}, {bird.location.lng}
-              </p>
-            </div>
-            <div>
-              <p className="text-gray-500 text-sm">Stav</p>
-              <p className={bird.seen ? "text-green-400" : "text-gray-400"}>
-                {bird.seen ? "✓ Viděno" : "Neviděno"}
-              </p>
-            </div>
-            <div className="col-span-2">
-              <p className="text-gray-500 text-sm">Poznámky</p>
-              <p>{bird.notes}</p>
-            </div>
-          </div>
-          {/* tlačítka pod kartou */}
-          <div className="flex justify-end gap-2 mt-2">
-            <button
-              onClick={() => onToggleSeen(bird.id)}
-              className="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-sm"
-            >
-              Přepnout stav
-            </button>
-            <button
-              onClick={() => {
-                onRemove(bird.id);
-                navigate("/");
-              }}
-              className="bg-red-900 hover:bg-red-800 text-white px-3 py-1 rounded text-sm"
-            >
-              Smazat
-            </button>
-          </div>
-
           </div>
 
           {bird.imageURL ? (
@@ -97,8 +96,12 @@ export function BirdDetailCard({
               className="w-69 object-cover rounded-lg"
             />
           ) : (
-            <div className="w-69 bg-gray-700 rounded-lg flex items-center justify-center text-6xl">
-              🦅
+            <div className="w-69 bg-gray-700 rounded-lg flex items-center justify-center">
+              <img
+                src="/bird-icon.svg"
+                alt="placeholder"
+                className="w-16 h-16 opacity-50"
+              />
             </div>
           )}
         </div>

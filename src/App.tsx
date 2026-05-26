@@ -7,12 +7,17 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">
       <header className="bg-gray-900 border-b border-gray-700 px-6 py-3 flex justify-between items-center">
-        <span className="text-green-400 font-bold text-xl">🦅 BirdWatch</span>
+        <span className="text-green-400 font-bold text-xl flex items-center gap-2">
+          <img src="/bird-icon.svg" alt="" className="w-6 h-6" />
+          BirdWatch
+        </span>
         <nav className="flex gap-6">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? "text-green-400 font-medium" : "text-gray-400 hover:text-green-400"
+              isActive
+                ? "text-green-400 font-medium"
+                : "text-gray-400 hover:text-green-400"
             }
           >
             Seznam ptáků

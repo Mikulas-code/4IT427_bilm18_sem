@@ -33,7 +33,6 @@ export function NewBirdForm({ onAddBird, onClose }: NewBirdFormProps) {
   const [date, setDate] = useState("");
 
   const [notes, setNotes] = useState("");
-  const [seen, setSeen] = useState("");
 
   const [count, setCount] = useState("");
 

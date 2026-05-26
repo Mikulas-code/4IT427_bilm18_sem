@@ -36,8 +36,12 @@ export function BirdCard({
             className="w-32 h-32 object-cover rounded-lg flex-shrink-0"
           />
         ) : (
-          <div className="w-32 h-32 bg-gray-700 rounded-lg flex-shrink-0 flex items-center justify-center text-4xl">
-            🦅
+          <div className="w-32 h-32 bg-gray-700 rounded-lg flex items-center justify-center">
+            <img
+              src="/bird-icon.svg"
+              alt="placeholder"
+              className="w-16 h-16 opacity-50"
+            />
           </div>
         )}
 
