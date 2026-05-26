@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# BirdWatch 🦅
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A digital field journal for birdwatchers to record and manage their bird sightings.
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+BirdWatch allows users to log birds they have spotted, including details such as species name, latin name, order, family, location (via interactive map), date, count, and personal notes. The app supports adding, editing, and deleting records, filtering by various criteria, and viewing sighting locations on a map.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Add, edit, and delete bird sightings
+- Filter birds by order, family, name, seen status, and date range
+- Interactive map to select sighting location (react-leaflet)
+- Bird detail page with map showing sighting location
+- Optional photo via URL
+- Data persisted in localStorage — survives page refresh
+- Dark theme UI
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript
+- Vite
+- TanStack Query (data fetching)
+- React Router DOM (routing)
+- React Leaflet (maps)
+- Tailwind CSS (styling)
+- Vitest + React Testing Library (testing)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Limitations
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- The project is frontend-only with no backend. Initial data is loaded from `public/birds.json` via TanStack Query.
+- Images are supported via URL only — there is no file upload due to the absence of a backend.
+- Data added by the user is stored in localStorage and will not persist across different browsers or devices.
+- The app does not support multiple users or accounts.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Installation
+
+```bash
+git clone https://github.com/Mikulas-code/4IT427_bilm18_sem.git
+cd 4IT427_bilm18_sem
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Running Tests
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# Run tests in terminal
+npm run test
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Run tests with visual UI in browser
+npm run test:ui
+
+# Run tests with coverage report
+npm run test:coverage
 ```
+
+## Screenshots
+![BirdWatch - Bird list](image.png)
+![BirdWatch - Bird detail](image-1.png)
+![BirdWatch - Adding new bird](image-2.png)
+![BirdWatch - Editing existing bird](image-3.png)
